@@ -80,5 +80,13 @@ The user must first activate the e-mail to log in. After the account has been ac
 
 # Results
 
+![S_Comment1](https://user-images.githubusercontent.com/37222672/61374401-f0d36700-a8a4-11e9-9408-77a296f29cbe.png)
+
+We are commenting on the video we reviewed in Figure 10.
+
+![S_Comment2](https://user-images.githubusercontent.com/37222672/61374403-f29d2a80-a8a4-11e9-8e96-c6a460f51de7.png)
+
+We determined that the interpretation we made in Figure 11 is positive or negative.
+
 If we evaluate the results of the project, our system allows the user to register, log in, share videos, comment and appreciate videos. Emotion analysis, which is our main goal, was also successfully accomplished.
 Although there are deficiencies in our project, it can fulfill many features required for a social video sharing system. After this stage, the existing deficiencies will be focused on and the deficiencies will be covered. In the later stages of the project, the accuracy of emotion analysis will be increased.
