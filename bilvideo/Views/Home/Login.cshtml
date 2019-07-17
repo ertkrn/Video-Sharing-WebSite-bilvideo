@@ -1,0 +1,73 @@
+﻿@using proje1.Entities.ValueObjects
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<div class="container-fluid bg-image">
+    <div class="row">
+        <div class="login-wraper">
+            <div class="hidden-xs">
+                <img src="~/Content/Photos/login.jpg" alt="">
+            </div>
+            <div class="banner-text hidden-xs">
+                <div class="line"></div>
+                <div class="b-text">
+                    <span class="color-active">Milyonlarca </span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">oyu</span> ücretsiz İzle.
+                </div>
+                <div class="overtext">
+                    Günlük 6000'den fazla video yüklendi.
+                </div>
+            </div>
+            <div class="login-window">
+                <div class="l-head">
+                    bilvideo Hesabınıza Giriş Yapınız
+                </div>
+                <div class="l-form">
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "login100-form validate-form" }))
+                    {
+                        @Html.ValidationSummary(false)
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">E-Posta</label>
+                            @*<input type="email" class="form-control" id="exampleInputEmail1" placeholder="ornek@gmail.com">*@
+                            @Html.TextBoxFor(model => model.UserOrEmail, new { @class = "form-control", id = "exampleInputEmail1", name = "usorem", placeholder = "ornek@gmail.com", required = "required", maxlength = "50" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Parola</label>
+                            @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********">*@
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "exampleInputPassword1", name = "usorem", placeholder = "**********" })
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <label class="checkbox">
+                                    @*<input type="checkbox" name="#">*@
+                                    @Html.CheckBoxFor(model => model.BeniHatirla)
+                                    <span class="arrow"></span>
+                                </label> <span>Bu Bilgisayarda Beni Hatırla</span>
+                                <span class="text2">(herkese açık veya paylaşılan bilgisayarlarda önerilmez)</span>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Giriş Yap</button></div>
+                            <div class="hidden-xs">
+                                <div class="col-lg-1 ortext">veya</div>
+                                <div class="col-lg-4 signuptext"><a href="/kayit-ol">Kayıt Ol</a></div>
+                            </div>
+                        </div>
+                        <div class="row hidden-xs">
+                            <div class="col-lg-12 forgottext">
+                                <a href="#">Kullanıcı adını ya da şifreni mi unuttun?</a>
+                            </div>
+                        </div>
+                        <div class="row visible-xs">
+                            <div class="col-xs-6">
+                                <div class="forgottext"><a href="#">Şifreni mi unuttun?</a></div>
+                            </div>
+                            <div class="col-xs-6"><div class="signuptext text-right"><a href="/kayit-ol">Kayıt Ol</a></div></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

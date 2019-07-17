@@ -1,0 +1,63 @@
+﻿@using proje1.Entities.ValueObjects
+@model MemberViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<div class="container-fluid bg-image">
+    <div class="row">
+        <div class="login-wraper">
+            <div class="hidden-xs">
+                <img src="~/Content/Photos/login.jpg" alt="">
+            </div>
+            <div class="banner-text hidden-xs">
+                <div class="line"></div>
+                <div class="b-text">
+                    <span class="color-active">Milyonlarca </span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">oyu</span> ücretsiz İzle.
+                </div>
+                <div class="overtext">
+                    Günlük 6000'den fazla video yüklendi.
+                </div>
+            </div>
+            <div class="login-window">
+                <div class="l-head">
+                    Ücretsiz Kayıt Olun
+                </div>
+                <div class="l-form">
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "login100-form validate-form" }))
+                    {
+                        @Html.ValidationSummary(false)
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">E-Posta</label>
+                        @Html.TextBoxFor(model=>model.Email, new { @class = "form-control", id = "exampleInputEmail1", placeholder = "ornek@gmail.com", required = "required", maxlength = "50" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Parola</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "exampleInputPassword1", placeholder = "**********" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword2">Re-type Password</label>
+                        @Html.PasswordFor(model => model.Repassword, new { @class = "form-control", id = "exampleInputPassword2", placeholder = "**********" })
+                    </div>
+                        <div class="row">
+                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Kayıt Ol</button></div>
+                            <div class="hidden-xs">
+                                <div class="col-lg-1 ortext">veya</div>
+                                <div class="col-lg-4 signuptext"><a href="login.html">Giriş Yap</a></div>
+                            </div>
+                        </div>
+                        <div class="row hidden-xs">
+                            <div class="col-lg-12 forgottext">
+                                <a href="#">"Kaydol"a tıklayarak Hizmet Şartlarını kabul ediyorum.</a>
+                            </div>
+                        </div>
+                        <div class="visible-xs text-center mt-30">
+                            <span class="forgottext"><a href="#">Zaten bir hesabınız var mı?</a></span>
+                            <span class="signuptext"><a href="#">Buradan Giriş Yap</a></span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+﻿@using proje1.Entities
+@using proje1.BusinessLayer
+@model  proje1.Entities.ValueObjects.VideoViewModel
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    List<Content> contents = new List<Content>();
+    ContentManager cManager = new ContentManager();
+    contents = cManager.List();
+    string[] ContentNames = new string[contents.Count()];
+    int i = 0;
+    foreach (Content content in contents)
+    {
+        ContentNames[i] = content.contentName;
+        i++;
+    }
+}
+<div class="container-fluid bg-image">
+    <div class="row">
+        <div class="col-lg-12 upload-page" id="page-upload">
+            @*<div class="hidden-xs">
+                <img src="~/Content/Photos/upload-background.png" alt="">
+            </div>*@
+            <div class="u-area" data-index="1">
+            <i class="cv cvicon-cv-upload-video"></i>
+
+            <p class="u-text1">Select Video files to upload</p>
+            <p class="u-text2">or drag and drop video files</p>
+
+            <button class="btn btn-primary u-btn" id="btnFileUpload">Upload Video</button>
+            <span id="spnFilePath"></span>
+            <input type="file" name="file" max-size=100000 value='Video Yükle' accept=".mp4, .mpeg, .mpg" class="btn btn-primary u-btn" id="FileUpload1" />
+        </div>
+            <div class="u-area" style="display:none;" data-index="2">
+                @using (Html.BeginForm("Upload", "Video", FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off", id = "video-form" }))
+                {
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Bilvideo</h1>
+                        </div>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5" id="video-image"> <div class="thumbnail" id="thumbnail"><img src="~/Content/Photos/fotoyok.jpg" id="yuklenen" /></div><span id="video-name"></span>@Html.HiddenFor(model => model.videoPath, new { id = "video-path" })</div>
+                                <div class="col-sm-6">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @*<input class="form-control" type="text" placeholder="Başlık">*@
+                                            @Html.TextBoxFor(model => model.videoTitle, new { @class = "form-control", placeholder = "Başlık" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            @*<input class="form-control" type="email" placeholder="Etiket(Ör. futbol, eğitim, komedi)">*@
+                                            @Html.TextBoxFor(model => model.videoTag, new { @class = "form-control", placeholder = "Etiket(Ör. futbol, eğitim, komedi)" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1" id="iptal"> <i class="cv cvicon-cv-cancel"></i> </div>
+                            </div>
+                            <div class="form-group">
+                                @*<input class="form-control" type="tel" placeholder="Enter your phone number">*@
+                                @Html.TextAreaFor(model=>model.videoText,new { @class = "form-control", cols = "50", rows = "5",
+                               placeholder = "Açıklama", maxlength = "10000", style ="resize:vertical;" })
+                            </div>
+                            <div class="form-group">
+                                @*<input class="form-control" type="text" placeholder="Enter ZIP/Location">*@
+                                <span class="form-label">Kategori</span>
+                                @Html.DropDownListFor(model => model.content, new SelectList(ContentNames), new { @class = "form-control" })
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Yayınla</button>
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+            @*<div class="u-area" style="display:none;" data-index="2">
+                        @using (Html.BeginForm("Upload", "Video", FormMethod.Post, new { enctype = "multipart/form-data", autocomplete = "off", id = "video-form" }))
+                        {
+                            <div class="col-md-3" id="video-image"> <div class="thumbnail" id="thumbnail"><img src="~/Content/Photos/fotoyok.jpg" id="yuklenen" /></div><span id="video-name"></span>@Html.HiddenFor(model=>model.videoPath, new { id="video-path"})</div>
+                            <div class="col-md-6">
+                                <span>Video Başlığı</span>@Html.TextBoxFor(model => model.videoTitle, new { placeholder = "Video Başlığı" })
+                                <span>Video Açıklaması</span>@Html.TextAreaFor(model=>model.videoText,new { cols = "50", rows = "5",
+        placeholder = "Video Açıklaması", maxlength = "100", style ="resize:vertical;" })
+                                <div class="col-md-5"><span>Video Kategorisi</span>@Html.DropDownListFor(model => model.content, new SelectList(ContentNames))</div>
+                                <div class="col-md-7"><input type="submit" value="Paylaş" /> </div>
+                            </div>
+                            <div class="col-md-2" id="iptal"> <i class="cv cvicon-cv-cancel"></i> </div>
+                        }
+                    </div>*@
+
+            <div class="u-terms">
+                <p>Videolarınızı paylaşarak, <a href="#">Hizmet Şartları</a> ve <a href="#">Topluluk Kuralları</a>'nı kabul edersiniz.</p>
+                <p class="hidden-xs">Lütfen başkalarının telif haklarını veya gizlilik haklarını ihlal etmeyin. Daha fazla bilgi edinin.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/upload.js"></script>
